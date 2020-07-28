@@ -1,4 +1,5 @@
 --Vending Machine Software V2 by BlackDragon_B and znepb
+-- useless test
 
 local turtleNetworkID = 3211
 local waitTime = 1
