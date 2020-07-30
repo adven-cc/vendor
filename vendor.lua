@@ -1,4 +1,5 @@
--- Vending Machine Software V2 by BlackDragon_B and znepb
+-- Vending Machine Software V3 by BlackDragon_B and znepb
+
 local config = require("config")
 local turtleNetworkID = config.turtleNetworkID
 
