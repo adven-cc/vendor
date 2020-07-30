@@ -96,7 +96,7 @@ while true do
             end
         end
 
-        local request = http.post(config.websocketURL, "content=" .. ("(%s@%s) %s deposited one computer"):format(config.locationType, config.locationName, nearestPlayer))
+        local request = http.post(config.websocketURL, "content=" .. ("(%s@%s) %s withdrew one computer"):format(config.locationType, config.locationName, nearestPlayer))
         request.close()
     end
 
