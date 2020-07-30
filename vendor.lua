@@ -15,7 +15,12 @@ local restrictedEntites = {
     "Arrow",
     "Zombie",
     "Creeper",
-    "Skeleton"
+    "Skeleton",
+    "quark:flat_item_frame",
+    "Spider",
+    "ItemFrame",
+    "Painting",
+    "quark:glass_item_frame"
 }
 
 if sensor then
