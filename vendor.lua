@@ -23,7 +23,8 @@ local restrictedEntites = {
     "quark:glass_item_frame",
     "Chicken",
     "Cow",
-    "Pig"
+    "Pig",
+    "Enderman"
 }
 
 if sensor then
