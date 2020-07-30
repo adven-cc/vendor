@@ -1,3 +1,6 @@
 return {
-    turtleNetworkID = 0
+    turtleNetworkID = 0,
+    websocketURL = "",
+    locationName = "",
+    locationType = ""
 }

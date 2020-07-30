@@ -7,6 +7,20 @@ local waitTime = 30
 local mon = peripheral.find("monitor")
 local speaker = peripheral.find("speaker")
 local chest = peripheral.find("minecraft:ender chest")
+local sensor = peripheral.find("plethora:sensor")
+local sense
+
+local restrictedEntites = {
+    "Item",
+    "Arrow",
+    "Zombie",
+    "Creeper",
+    "Skeleton"
+}
+
+if sensor then
+    sense = sensor.sense
+end
 
 local function default()
     mon.setTextColor(colors.lightGray)
@@ -35,6 +49,15 @@ local function getFirst() -- Just to get first item in a chest
     return
 end
 
+function table.contains(tbl, value)
+    for i, v in pairs(tbl) do
+        if v == value then
+            return true
+        end
+    end
+    return false
+end
+
 while true do
     default()
     speaker.playSound("entity.experience_orb.pickup", 1, 1)
@@ -51,8 +74,24 @@ while true do
     turtle.drop(1)
 
     speaker.playSound("entity.player.levelup", 1, 1)
+    sleeping()
+
+    if config.websocketURL and config.websocketURL ~= "" then
+        local nearestPlayer = "(unk)"
+        if sense then
+            local sensed = sense()
+            for i, v in pairs(sensed) do
+                if not table.contains(restrictedEntites, v.name) then
+                    nearestPlayer = v.name
+                    break
+                end
+            end
+        end
+
+        local request = http.post(config.websocketURL, "content=" .. ("(%s@%s) %s deposited one computer"):format(config.locationType, config.locationName, nearestPlayer))
+        request.close()
+    end
 
     -- Wait 30 seconds before next drop
-    sleeping()
     sleep(waitTime)
 end
