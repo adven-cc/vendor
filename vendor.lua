@@ -20,7 +20,10 @@ local restrictedEntites = {
     "Spider",
     "ItemFrame",
     "Painting",
-    "quark:glass_item_frame"
+    "quark:glass_item_frame",
+    "Chicken",
+    "Cow",
+    "Pig"
 }
 
 if sensor then
