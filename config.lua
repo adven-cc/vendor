@@ -1,3 +1,3 @@
-{
+return {
     turtleNetworkID = 0
 }
