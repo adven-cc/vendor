@@ -25,7 +25,8 @@ local restrictedEntites = {
     "Chicken",
     "Cow",
     "Pig",
-    "Enderman"
+    "Enderman",
+    "Witch"
 }
 
 if sensor then
