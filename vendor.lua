@@ -40,12 +40,10 @@ local function update()
         print("Failed to update.")
     else
         local vendingFile = fs.open(s, "r")
-        local updatedFile = http.get("https://raw.githubusercontent.com/adven-cc/vendor/master/vendor.lua").readAll()
-        if updatedFile() ~= vendingFile.readAll() then
+        local data = handle.readAll()
+        if data ~= vendingFile.readAll() then
             print("Updating system.")
             vendingFile.close()
-            updatedFile.close()
-            data = handle.readAll()
             local f = fs.open(s, "w")
             handle.close()
             print("Writing Data.")
