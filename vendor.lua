@@ -34,12 +34,12 @@ if sensor then
 end
 
 local function default()
-    mon.setTextColor(colors.lightGray)
-    mon.setBackgroundColor(colors.gray)
+    mon.setTextColor(config.textColor)
+    mon.setBackgroundColor(config.bgColor)
     mon.setTextScale(0.5)
     mon.clear()
     mon.setCursorPos(2, 4)
-    mon.write("Free Computer")
+    mon.write(config.DispensedItem)
     mon.setCursorPos(3, 7)
     mon.write("Click here!")
 end
@@ -99,7 +99,7 @@ while true do
             end
         end
 
-        local request = http.post(config.websocketURL, "content=" .. ("(%s@%s) %s withdrew one computer"):format(config.locationType, config.locationName, nearestPlayer))
+        local request = http.post(config.websocketURL, "content=" .. ("(%s@%s) %s withdrew one %s"):format(config.locationType, config.locationName, nearestPlayer, config.DispensedItem))
         request.close()
     end
 
