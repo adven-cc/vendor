@@ -60,7 +60,8 @@ local function default()
     mon.setBackgroundColor(config.bgColor)
     mon.setTextScale(0.5)
     mon.clear()
-    mon.setCursorPos(2, 4)
+    local x,y = mon.getSize()
+    mon.setCursorPos((x-#config.DispensedItem)/2, 4)
     mon.write(config.DispensedItem)
     mon.setCursorPos(3, 7)
     mon.write("Click here!")
@@ -104,7 +105,7 @@ while true do
     -- Wait until monitor is touched
     os.pullEvent("monitor_touch")
 
-    -- Drop the computer
+    -- Drop the item
     turtle.drop(config.DispensedAmount)
 
     speaker.playSound("entity.player.levelup", 1, 1)
@@ -122,7 +123,7 @@ while true do
             end
         end
 
-        local request = http.post(config.websocketURL, "content=" .. ("(%s@%s) %s withdrew one %s"):format(config.locationType, config.locationName, nearestPlayer, config.DispensedItem))
+        local request = http.post(config.websocketURL, "content=" .. ("(%s@%s) %s withdrew %s %s"):format(config.locationType, config.locationName, nearestPlayer, config.DispensedAmount, config.DispensedItem))
         request.close()
     end
 
