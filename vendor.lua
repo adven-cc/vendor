@@ -45,8 +45,8 @@ local function default()
 end
 
 local function sleeping()
-    mon.setTextColor(colors.lightGray)
-    mon.setBackgroundColor(colors.gray)
+    mon.setTextColor(config.textColor)
+    mon.setBackgroundColor(config.bgColor)
     mon.clear()
     mon.setCursorPos(3, 5)
     mon.write("Please wait")
@@ -55,7 +55,7 @@ end
 local function getFirst() -- Just to get first item in a chest
     local items = chest.list()
     for i, v in pairs(items) do
-        return i
+        if i.count >= config.DispensedAmount return i end
     end
     return
 end
@@ -75,14 +75,14 @@ while true do
 
     -- Pull a chest into turtles first slot
     if turtle.getItemCount(1) == 0 then
-        chest.pushItems("turtle_" .. tostring(turtleNetworkID), getFirst(), 1, 1)
+        chest.pushItems("turtle_" .. tostring(turtleNetworkID), getFirst(), config.DispensedAmount, 1)
     end
 
     -- Wait until monitor is touched
     os.pullEvent("monitor_touch")
 
     -- Drop the computer
-    turtle.drop(1)
+    turtle.drop(config.DispensedAmount)
 
     speaker.playSound("entity.player.levelup", 1, 1)
     sleeping()
