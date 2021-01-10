@@ -41,7 +41,7 @@ local function update()
     else
         local vendingFile = fs.open(s, "r")
         local updatedFile = http.get("https://raw.githubusercontent.com/adven-cc/vendor/master/vendor.lua").readAll()
-        if updatedFile() =~ vendingFile.readAll() then
+        if updatedFile() ~= vendingFile.readAll() then
             vendingFile.close()
             updatedFile.close()
             data = handle.readAll()
