@@ -1,4 +1,4 @@
--- Vending Machine Software V3 by BlackDragon_B and znepb
+-- Vending Machine Software V4 by BlackDragon_B and znepb
 
 local config = require("config")
 local turtleNetworkID = config.turtleNetworkID
@@ -31,6 +31,28 @@ local restrictedEntites = {
 
 if sensor then
     sense = sensor.sense
+end
+
+local function update()
+    local s = shell.getRunningProgram()
+    handle = http.get("https://raw.githubusercontent.com/adven-cc/vendor/master/vendor.lua")
+    if not handle then
+        print("Failed to update.")
+    else
+        local vendingFile = fs.open(s, "r")
+        local updatedFile = http.get("https://raw.githubusercontent.com/adven-cc/vendor/master/vendor.lua").readAll()
+        if updatedFile() =~ vendingFile.readAll() then
+            vendingFile.close()
+            updatedFile.close()
+            data = handle.readAll()
+            local f = fs.open(s, "w")
+            handle.close()
+            f.write(data)
+            f.close()
+            shell.run(s)
+        end
+        return
+    end
 end
 
 local function default()
