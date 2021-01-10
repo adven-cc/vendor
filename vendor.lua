@@ -55,7 +55,7 @@ end
 local function getFirst() -- Just to get first item in a chest
     local items = chest.list()
     for i, v in pairs(items) do
-        if i.count >= config.DispensedAmount return i end
+        if i.count >= config.DispensedAmount then return i end
     end
     return
 end
