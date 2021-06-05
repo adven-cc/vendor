@@ -110,6 +110,11 @@ while true do
 
     speaker.playSound("entity.player.levelup", 1, 1)
     sleeping()
+    
+    local total = 0
+    for slot, item in pairs(chest.list()) do
+        total = total + item.count
+    end
 
     if config.websocketURL and config.websocketURL ~= "" then
         local nearestPlayer = "(unk)"
@@ -123,7 +128,7 @@ while true do
             end
         end
 
-        local request = http.post(config.websocketURL, "content=" .. ("(%s@%s) %s withdrew %s %s"):format(config.locationType, config.locationName, nearestPlayer, config.DispensedAmount, config.DispensedItem))
+        local request = http.post(config.websocketURL, "content=" .. ("(%s@%s) %s withdrew %s %s (%s left)"):format(config.locationType, config.locationName, nearestPlayer, config.DispensedAmount, config.DispensedItem, total))
         request.close()
     end
 
