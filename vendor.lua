@@ -2,10 +2,11 @@
 
 local config = require("config")
 local turtleNetworkID = config.turtleNetworkID
+local waitTime = 0
 if config.waitTime then
-    local waitTime = config.waitTime
+    waitTime = config.waitTime
 else
-    local waitTime = 15
+    waitTime = 15
 end
 local mon = peripheral.find("monitor")
 local speaker = peripheral.find("speaker")
