@@ -51,6 +51,8 @@ local function update()
             print("Writing Data.")
             f.write(data)
             f.close()
+            local request = http.post(config.websocketURL, "content=" .. ("(%s@%s) System has been updated to the newest github commit"):format(config.locationType, config.locationName))
+            request.close()
             shell.run(s)
         end
         return
@@ -94,7 +96,11 @@ function table.contains(tbl, value)
     return false
 end
 print("Checking for updates.")
-update()
+if not config.ignoreUpdate then 
+    update()
+end
+local request = http.post(config.websocketURL, "content=" .. ("(%s@%s) Has been started"):format(config.locationType, config.locationName))
+request.close()
 while true do
     default()
     speaker.playSound("entity.experience_orb.pickup", 1, 1)
