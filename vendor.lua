@@ -2,7 +2,7 @@
 
 local config = require("config")
 local turtleNetworkID = config.turtleNetworkID
-if config.waitTime
+if config.waitTime then
     local waitTime = config.waitTime
 else
     local waitTime = 15
