@@ -8,4 +8,5 @@ return {
     textColor = "",
     DispensedItem = "",
     --waitTime = 15,
+    --ignoreUpdate, -- Activate this if you want to ignore updates.
 }
