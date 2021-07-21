@@ -7,4 +7,5 @@ return {
     bgColor = "",
     textColor = "",
     DispensedItem = "",
+    --waitTime = 15,
 }
