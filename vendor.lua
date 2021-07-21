@@ -2,9 +2,11 @@
 
 local config = require("config")
 local turtleNetworkID = config.turtleNetworkID
-
-local waitTime = 15
-
+if config.waitTime
+    local waitTime = config.waitTime
+else
+    local waitTime = 15
+end
 local mon = peripheral.find("monitor")
 local speaker = peripheral.find("speaker")
 local chest = peripheral.find("minecraft:ender chest")
